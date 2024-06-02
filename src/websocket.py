@@ -76,10 +76,6 @@ async def ws_client_handler(shard_node: ShardOverlay, ws_client: WebSocketServer
                 else:
                     pass  # TODO: raise error
 
-                print("external_src_listeners", len(external_src_listeners))
-                print("external_dest_listeners", len(external_dest_listeners))
-                print("external_all_listeners", len(external_all_listeners))
-
                 await ws_client.send(json.dumps({
                     'type': 'subscribe',
                     'answer': {

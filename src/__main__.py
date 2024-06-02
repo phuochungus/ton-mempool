@@ -13,6 +13,8 @@ from .processer import process_external_message
 
 logger = logging.getLogger(__name__)
 
+minimum_peer_connections = 10
+
 
 async def start_up(adnl_transport: AdnlTransport, overlay_transport: OverlayTransport) -> None:
     logger.info('Starting up!')
@@ -29,10 +31,12 @@ async def start_up(adnl_transport: AdnlTransport, overlay_transport: OverlayTran
     manager = OverlayManager(overlay_transport, dht, max_peers=30)
 
     await manager.start()
-    await asyncio.sleep(15)
 
     shard_node = ShardOverlay(manager, external_messages_handler=process_external_message, shard_blocks_handler=lambda i, j: print(i))
-    # await asyncio.sleep(150)
+
+    logger.info('Waiting for minimum {} peer connections ...'.format(minimum_peer_connections))
+    while len(shard_node._overlay.peers) < minimum_peer_connections:
+        await asyncio.sleep(2)
 
     logger.info('Starting websocket.')
     await run_websocket(shard_node)
