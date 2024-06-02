@@ -188,3 +188,6 @@ fabric.properties
 /my_peers.py
 /key.txt
 /feats/
+
+
+liteserver-config.json

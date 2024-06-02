@@ -59,14 +59,15 @@ Then you need to wait until the `Overlay Client` find the peers and connect to t
 
 ### Methods
 
-* `{'type': 'get_peers_amount'}` - get peers amount server knows. 
-* `{'type': 'subscribe', 'data': 'external'}` - subscribe to external messages. 
+* `{'type': 'get_peers_amount'}` - get peers amount server knows.
+* `{'type': 'subscribe', 'data': {'type': 'external', 'from': 'src', 'address': '0:...'}}` - subscribe to external messages from source (or to destination "dest") address.
+* `{'type': 'subscribe', 'data': {'type': 'external', 'from': 'all'}}` - subscribe to all external messages.
 * `{'type': 'send_external', 'data': hex_boc}` - send external message to the network.
 
 ### Receive messages
 
 * `{"type": "get_peers_amount", "answer": {"amount": peers_amount}}` - amount of peers.
-* `{'type': 'external', 'data': hex_boc}` - new external message found in mempool.
+* `{'type': 'external', 'data': hex_boc}` - send external message to mempool.
 
 ### What can I do with messages I receive?
 

@@ -1,7 +1,6 @@
 version: "3.8"
 
 services:
-
   mempool:
 #    container_name: listener
     env_file:
