@@ -13,7 +13,7 @@ from .processer import process_external_message
 
 logger = logging.getLogger(__name__)
 
-minimum_peer_connections = 10
+minimum_peer_connections = 100
 
 
 async def start_up(adnl_transport: AdnlTransport, overlay_transport: OverlayTransport) -> None:

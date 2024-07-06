@@ -9,9 +9,11 @@ RUN apt-get install -y git python3 python3-pip
 
 WORKDIR /code
 
-COPY ./src ./src
 COPY requirements.txt .
-
 RUN pip install -r requirements.txt
+
+COPY ./src ./src
+
+COPY liteserver-config.json liteserver-config.json
 
 CMD ["python3", "-m", "src"]
